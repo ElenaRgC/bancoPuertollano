@@ -1,11 +1,11 @@
 
 
 function cargarDatos(){
-    /*document.getElementById('idPersona').value = persona.id
+    /* Carga los datos de index.html */
     document.getElementById('nombre').value = persona.nombre
     document.getElementById('apellido1').value = persona.apellido1
     document.getElementById('apellido2').value = persona.apellido2
-    document.getElementById('nacionalidad').value = persona.nacionalidad*/
+    document.getElementById('nacionalidad').value = persona.nacionalidad
     menu = document.getElementById('menu').innerHTML
 }
 
