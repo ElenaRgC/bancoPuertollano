@@ -1,5 +1,3 @@
-
-
 function cargarDatos(){
     /*document.getElementById('idPersona').value = persona.id
     document.getElementById('nombre').value = persona.nombre
