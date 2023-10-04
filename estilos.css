@@ -8,16 +8,16 @@
   font-weight: bold;
   font-size: 13px;
 }
-.datos-cliente {
+.grid {
   display: grid;
   grid-template-columns: auto auto;
 
   width: fit-content;
   text-align: center;
 }
-.datos-cliente > * {
+.grid > * {
   margin-bottom: 0.3rem;
 }
-.datos-cliente label {
+.grid label {
   padding-right: 0.5rem;
 }
