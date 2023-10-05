@@ -15,10 +15,18 @@
   
     width: fit-content;
     text-align: center;
-  }
-  .grid > * {
-    margin-bottom: 0.3rem;
-  }
-  .grid label {
-    padding-right: 0.5rem;
-  }
+}
+.grid > * {
+margin-bottom: 0.3rem;
+}
+.grid label {
+padding-right: 0.5rem;
+}
+
+#saldo {
+    width: 50%;
+}
+
+button{
+    width: 35%;
+}
