@@ -12,5 +12,16 @@ function cargarCabecera(dest){
 }
 
 function retirarDinero(){
-    
+    var validacionExitosa = validarDineroRetirar()
+
+    if (validacionExitosa){
+        var saldo = document.getElementById('saldo').value 
+        var retirar = document.getElementById('retirar').value
+
+        var nuevoSaldo = saldo - retirar
+
+        retirar.value = ''
+
+        var mensaje = document.getElementById('mensaje')
+    }
 }
