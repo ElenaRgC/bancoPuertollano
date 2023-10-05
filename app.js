@@ -20,11 +20,11 @@ function retirarDinero(){
     var validacionExitosa = validarDineroRetirar()
 
     if (validacionExitosa){
-        var saldo = document.getElementById('saldo').value 
-        var retirar = document.getElementById('retirar').value
+        var saldo = parseFloat(document.getElementById('saldo').value)
+        var retirar = parseFloat(document.getElementById('retirar').value)
 
         var nuevoSaldo = saldo - retirar
-        nuevoSaldo = document.getElementById('saldo').value
+        document.getElementById('saldo').value = nuevoSaldo
 
         document.getElementById('retirar').value = ''
 
@@ -45,7 +45,7 @@ function validarDineroRetirar(){
         return false
     }
     
-    if (retirar > saldo){
+    if (retirar < saldo){
         msg.textContent = "No puedes retirar más dinero del que tienes en tu saldo."
         return false
     }
@@ -70,12 +70,11 @@ function ingresarDinero(){
 }
 
 function validarIngresoDinero(){
-    var saldo = document.getElementById('saldo').value
     var ingresar = document.getElementById('ingresar').value
-    var msg = document.getElementById('mensaje').value
+    var msg = document.getElementById('mensaje')
 
     var patron = /^[0-9]+$/
-    if (!patron.test(retirar)){
+    if (!patron.test(ingresar)){
         msg.textContent = "Por favor, ingresa solo números"
         return false
     }
