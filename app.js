@@ -1,4 +1,5 @@
 let botonCliente = document.getElementById('boton-cliente');
+let botonTarjeta = document.getElementById('boton-tarjeta');
 
 function cargarDatos(){
     /* Carga los datos de index.html */
@@ -8,7 +9,7 @@ function cargarDatos(){
     document.getElementById('nacionalidad').value = persona.nacionalidad;
 
     /* Carga el menú */
-    menu = document.getElementById('menu').innerHTML;
+    let menu = document.getElementById('menu').innerHTML;
 }
 
 function cargarCabecera(dest){  
@@ -39,10 +40,25 @@ botonCliente.addEventListener('click', function() {
     modificarDatos();
 });
 
+botonTarjeta.addEventListener('click', function() {
+    guardarTarjeta();
+});
+
 function modificarDatos() {
     persona.nombre = document.getElementById('nombre').value;
     persona.apellido1 = document.getElementById('apellido1').value;
     persona.apellido2 = document.getElementById('apellido2').value;
     persona.nacionalidad = document.getElementById('nacionalidad').value;
     console.log(persona);
+}
+
+function guardarTarjeta() {
+
+    let nuevaTarjeta = {
+        'numero':document.getElementById('numero').value,
+        'cvv': document.getElementById('cvv').value,
+        'activa': document.getElementById('activa').checked,
+    };
+
+    tarjetas.push(nuevaTarjeta);
 }
