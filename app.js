@@ -15,14 +15,20 @@ function cargarCabecera(dest){
 
 
 function validarDineroRetirar(){
-    saldo = document.getElementById('saldo').value
-    retirar = document.getElementById('retirar').value
+    var saldo = document.getElementById('saldo').value
+    var retirar = document.getElementById('retirar').value
+    var msg = document.getElementById('mensaje')
 
-    if (retirar === '/^[d]$/'){
-        if (saldo > retirar){
-            return
-        }else{
-            return
-        }
+    var patron = /^[0-9]+$/
+
+    if (!patron.test(retirar)){
+        mensaje.textContent = "Por favor, ingresa solo números"
+        return false
     }
+    
+    if (retirar > saldo){
+        mensaje.textContent = "No puedes retirar más dinero del que tienes en tu saldo."
+        return false
+    }
+    return true
 }
