@@ -34,12 +34,12 @@ function validarDineroRetirar(){
     var patron = /^[0-9]+$/
 
     if (!patron.test(retirar)){
-        mensaje.textContent = "Por favor, ingresa solo números"
+        msg.textContent = "Por favor, ingresa solo números"
         return false
     }
     
     if (retirar > saldo){
-        mensaje.textContent = "No puedes retirar más dinero del que tienes en tu saldo."
+        msg.textContent = "No puedes retirar más dinero del que tienes en tu saldo."
         return false
     }
     return true
