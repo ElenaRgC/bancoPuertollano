@@ -11,6 +11,11 @@ function cargarCabecera(dest){
  document.getElementById(dest).innerHTML = '   <h1>BancoPuertollano</h1>    <ul>        <li><a href="index.html">Inicio</a></li>        <li><a href="infoCuenta.html">Informaci&#243;n Cuenta</a></li>             <li><a href="tarjetas.html">Tarjetas</a></li>    </ul>' 
 }
 
+let cuenta = {
+    'iban': 'ES21 1465 0100 72 2030876293',
+    'saldo': '500'
+}
+
 function retirarDinero(){
     var validacionExitosa = validarDineroRetirar()
 
