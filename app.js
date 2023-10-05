@@ -51,3 +51,20 @@ function validarDineroRetirar(){
     }
     return true
 }
+
+function ingresarDinero(){
+    var validacionExitosa = validarDineroIngresado()
+
+    if (validacionExitosa){
+        var saldo = document.getElementById('saldo').value
+        var ingresar = document.getElementById('ingresar').value
+
+        var nuevoSaldo = saldo + ingresar
+        nuevoSaldo = document.getElementById('ingresar').value
+
+        document.getElementById('ingresar').value = ''
+
+        var mensaje = document.getElementById('mensaje')
+        mensaje.textContent = 'Ingreso exitoso.'
+    }
+}
