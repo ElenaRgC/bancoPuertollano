@@ -1,6 +1,7 @@
 let botonCliente = document.getElementById('boton-cliente');
 let botonTarjeta = document.getElementById('boton-tarjeta');
 let parrafoCliente = document.getElementById('mensaje-cliente');
+let parrafoTarjeta = document.getElementById('mensaje-tarjeta');
 
 function cargarDatos() {
     /* Carga los datos de index.html */
@@ -44,9 +45,9 @@ crearTabla();
 
 // LISTENERS --------------------------
 
-botonCliente.addEventListener('click', function () {
+/* botonCliente.addEventListener('click', function () {
     modificarDatos(validarDatos());
-});
+}); */
 
 botonTarjeta.addEventListener('click', function () {
     guardarTarjeta(validarTarjeta());
@@ -70,6 +71,12 @@ function modificarDatos(datos) {
 function guardarTarjeta(tarjeta) {
     if (tarjeta) {
         tarjetas.push(tarjeta);
+        parrafoTarjeta.innerText = 'Tarjeta guardada correctamente.';
+        parrafoTarjeta.setAttribute('class', 'correcto');
+
+        document.getElementById('numero').value = '';
+        document.getElementById('cvv').value = '';
+        document.getElementById('activa').checked = false;
     }
 }
 
@@ -146,6 +153,8 @@ function validarTarjeta() {
     if (mensaje == '') {
         return tarjetaNueva;
     } else {
+        parrafoTarjeta.innerText = mensaje;
+        parrafoTarjeta.setAttribute('class', 'error');
         return false;
     }
 }
