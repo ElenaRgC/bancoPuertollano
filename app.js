@@ -68,3 +68,16 @@ function ingresarDinero(){
         mensaje.textContent = 'Ingreso exitoso.'
     }
 }
+
+function validarIngresoDinero(){
+    var saldo = document.getElementById('saldo').value
+    var ingresar = document.getElementById('ingresar').value
+    var msg = document.getElementById('mensaje').value
+
+    var patron = /^[0-9]+$/
+    if (!patron.test(retirar)){
+        msg.textContent = "Por favor, ingresa solo números"
+        return false
+    }
+    return true
+}
