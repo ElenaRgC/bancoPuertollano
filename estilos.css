@@ -21,3 +21,9 @@
 .grid label {
   padding-right: 0.5rem;
 }
+.error {
+  color: red;
+}
+.correcto {
+  color: green;
+}
