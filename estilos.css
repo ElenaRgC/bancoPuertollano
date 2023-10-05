@@ -8,6 +8,19 @@
     font-weight:bold;
     font-size:13px;
 }
+.grid {
+    display: grid;
+    grid-template-columns: auto auto;
+  
+    width: fit-content;
+    text-align: center;
+}
+.grid > * {
+margin-bottom: 0.3rem;
+}
+.grid label {
+padding-right: 0.5rem;
+}
 
 #iban{
     width: 200px;
