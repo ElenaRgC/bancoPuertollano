@@ -39,6 +39,8 @@ let tarjetas = [
     },
 ];
 
+crearTabla();
+
 // LISTENERS --------------------------
 
 botonCliente.addEventListener('click', function() {
@@ -47,6 +49,7 @@ botonCliente.addEventListener('click', function() {
 
 botonTarjeta.addEventListener('click', function() {
     guardarTarjeta();
+    crearTabla();
 });
 
 // FUNCIONES ----------------------------
@@ -73,6 +76,21 @@ function guardarTarjeta() {
     };
 
     tarjetas.push(nuevaTarjeta);
+}
+
+function crearTabla() {
+    let tabla = document.getElementById('tabla');
+    tabla.innerHTML = "";
+
+    for (let tarjeta of tarjetas) {
+        let tr = document.createElement('tr');
+        for (let dato in tarjeta) {
+            let td = document.createElement('td');
+            td.textContent = tarjeta[dato];
+            tr.appendChild(td);
+        }
+        tabla.appendChild(tr);       
+    }
 }
 
 // VALIDACIONES -----------------------------
@@ -108,5 +126,5 @@ function validarDatos() {
             parrafoCliente.setAttribute('class', 'error');
             return false;
     }
-
+    
 }
