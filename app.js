@@ -1,5 +1,3 @@
-
-
 function cargarDatos(){
     /*document.getElementById('idPersona').value = persona.id
     document.getElementById('nombre').value = persona.nombre
@@ -13,7 +11,44 @@ function cargarCabecera(dest){
  document.getElementById(dest).innerHTML = '   <h1>BancoPuertollano</h1>    <ul>        <li><a href="index.html">Inicio</a></li>        <li><a href="infoCuenta.html">Informaci&#243;n Cuenta</a></li>             <li><a href="tarjetas.html">Tarjetas</a></li>    </ul>' 
 }
 
+
 let cuenta = {
-    'iban' = 'ES21 1465 0100 72 2030876293',
-    'saldo' = '500'
+    'iban': 'ES21 1465 0100 72 2030876293',
+    'saldo': '500'
+}
+
+function retirarDinero(){
+    var validacionExitosa = validarDineroRetirar()
+
+    if (validacionExitosa){
+        var saldo = document.getElementById('saldo').value 
+        var retirar = document.getElementById('retirar').value
+
+        var nuevoSaldo = saldo - retirar
+        nuevoSaldo = document.getElementById('saldo').value
+
+        document.getElementById('retirar').value = ''
+
+        var mensaje = document.getElementById('mensaje')
+        mensaje.textContent = 'Retiro exitoso.'
+    }
+}
+
+function validarDineroRetirar(){
+    var saldo = document.getElementById('saldo').value
+    var retirar = document.getElementById('retirar').value
+    var msg = document.getElementById('mensaje')
+
+    var patron = /^[0-9]+$/
+
+    if (!patron.test(retirar)){
+        msg.textContent = "Por favor, ingresa solo números"
+        return false
+    }
+    
+    if (retirar > saldo){
+        msg.textContent = "No puedes retirar más dinero del que tienes en tu saldo."
+        return false
+    }
+    return true
 }
