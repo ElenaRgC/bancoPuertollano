@@ -11,7 +11,7 @@ function cargarCabecera(dest){
  document.getElementById(dest).innerHTML = '   <h1>BancoPuertollano</h1>    <ul>        <li><a href="index.html">Inicio</a></li>        <li><a href="infoCuenta.html">Informaci&#243;n Cuenta</a></li>             <li><a href="tarjetas.html">Tarjetas</a></li>    </ul>' 
 }
 
-function retirarDinero()
+function retirarDinero(){
     var validacionExitosa = validarDineroRetirar()
 
     if (validacionExitosa){
@@ -24,6 +24,7 @@ function retirarDinero()
 
         var mensaje = document.getElementById('mensaje')
     }
+}
 
 function validarDineroRetirar(){
     var saldo = document.getElementById('saldo').value
