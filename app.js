@@ -19,9 +19,11 @@ function retirarDinero(){
         var retirar = document.getElementById('retirar').value
 
         var nuevoSaldo = saldo - retirar
+        nuevoSaldo = document.getElementById('saldo').value
 
-        retirar.value = ''
+        document.getElementById('retirar').value = ''
 
         var mensaje = document.getElementById('mensaje')
+        mensaje.textContent = 'Retiro exitoso.'
     }
 }
