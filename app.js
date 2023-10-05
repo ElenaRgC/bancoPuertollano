@@ -14,3 +14,14 @@ function cargarCabecera(dest){
 function retirarDinero(){
     
 }
+
+function validarDineroRetirar(){
+    saldo = document.getElementById('saldo').value
+    retirar = document.getElementById('retirar').value
+
+    if (saldo > retirar){
+        return
+    }else{
+        return
+    }
+}
