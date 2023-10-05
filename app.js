@@ -1,5 +1,6 @@
 let botonCliente = document.getElementById('boton-cliente');
 let botonTarjeta = document.getElementById('boton-tarjeta');
+let parrafoCliente = document.getElementById('mensaje-cliente');
 
 function cargarDatos(){
     /* Carga los datos de index.html */
@@ -44,19 +45,22 @@ botonCliente.addEventListener('click', function() {
     modificarDatos(validarDatos());
 });
 
-/* botonTarjeta.addEventListener('click', function() {
+botonTarjeta.addEventListener('click', function() {
     guardarTarjeta();
-}); */
+});
 
 // FUNCIONES ----------------------------
 
 function modificarDatos(datos) {
 
     if (datos) {
-        persona.nombre = datos.nombre;
-        persona.apellido1 = datos.apellido1;
-        persona.apellido2 = datos.apellido2;
-        persona.nacionalidad = datos.nacionalidad;
+        persona.nombre = datos['Nombre'];
+        persona.apellido1 = datos['Primer apellido'];
+        persona.apellido2 = datos['Segundo apellido'];
+        persona.nacionalidad = datos['Nacionalidad'];
+
+        parrafoCliente.innerText = "Datos guardados correctamente.";
+        parrafoCliente.setAttribute('class', 'correcto');
     }
 }
 
@@ -79,20 +83,20 @@ function validarDatos() {
     let mensaje = "";
 
     let datosNuevos = {
-        'nombre': document.getElementById('nombre').value.trim(),
-        'apellido1': document.getElementById('apellido1').value.trim(),
-        'apellido2': document.getElementById('apellido2').value.trim(),
-        'nacionalidad': document.getElementById('nacionalidad').value.trim()
+        'Nombre': document.getElementById('nombre').value.trim(),
+        'Primer apellido': document.getElementById('apellido1').value.trim(),
+        'Segundo apellido': document.getElementById('apellido2').value.trim(),
+        'Nacionalidad': document.getElementById('nacionalidad').value.trim()
     };
 
     for (let dato in datosNuevos) {
-        if (dato != 'nacionalidad') {
+        if (dato != 'Nacionalidad') {
             if(!patronNyA.test(datosNuevos[dato])) {
-                mensaje += datosNuevos[dato] + " debe tener entre 3 y 20 caracteres. \n";
+                mensaje += dato + " debe tener entre 3 y 20 caracteres. \n";
             }
         } else {
             if(!patronNacionalidad.test(datosNuevos[dato])) {
-                mensaje += datosNuevos[dato] + " debe tener entre 3 y 15 caracteres. \n";
+                mensaje += dato + " debe tener entre 3 y 15 caracteres. \n";
             }
         }
     }
@@ -100,6 +104,8 @@ function validarDatos() {
     if (mensaje === "") {
             return datosNuevos;
     } else {
+            parrafoCliente.innerText = mensaje;
+            parrafoCliente.setAttribute('class', 'error');
             return false;
     }
 
