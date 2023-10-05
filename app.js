@@ -22,19 +22,6 @@ let persona = {
     'nacionalidad': 'Española'
 };
 
-let tarjetas = [
-    {
-        'numero': '1234 12345 123456',
-        'cvv': '123',
-        'activa': true,
-    },
-    {
-        'numero': '1234 12345 123457',
-        'cvv': '321',
-        'activa': false,
-    },
-]
-
 botonCliente.addEventListener('click', function() {
     modificarDatos();
 });
