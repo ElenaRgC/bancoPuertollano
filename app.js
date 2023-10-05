@@ -46,9 +46,9 @@ crearTabla();
 
 // LISTENERS --------------------------
 
-/* botonCliente.addEventListener('click', function() {
+botonCliente.addEventListener('click', function() {
     modificarDatos(validarDatos());
-}); */
+});
 
 botonTarjeta.addEventListener('click', function() {
     guardarTarjeta();
