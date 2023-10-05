@@ -18,9 +18,11 @@ function validarDineroRetirar(){
     saldo = document.getElementById('saldo').value
     retirar = document.getElementById('retirar').value
 
-    if (saldo > retirar){
-        return
-    }else{
-        return
+    if (retirar === '/^[d]$/'){
+        if (saldo > retirar){
+            return
+        }else{
+            return
+        }
     }
 }
