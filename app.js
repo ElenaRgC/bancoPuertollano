@@ -11,9 +11,6 @@ function cargarDatos(){
 
     /* Carga el menú */
     let menu = document.getElementById('menu').innerHTML;
-
-    /* Carga la tabla */
-
 }
 
 function cargarCabecera(dest){  
