@@ -13,7 +13,7 @@ function cargarCabecera(dest){
 
 let cuenta = {
     'iban': 'ES21 1465 0100 72 2030876293',
-    'saldo': '500'
+    'saldo': 500
 }
 
 function retirarDinero(){
