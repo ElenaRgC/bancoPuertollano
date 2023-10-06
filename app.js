@@ -21,7 +21,7 @@ function retirarDinero(){
 
     if (validacionExitosa){
         var saldo = cuenta.saldo
-        var retirar = parseInt(document.getElementById('retirar').value)
+        var retirar = parseFloat(document.getElementById('retirar').value)
         
         var nuevoSaldo = saldo - retirar
         document.getElementById('saldo').value = "" + nuevoSaldo
@@ -29,7 +29,7 @@ function retirarDinero(){
         document.getElementById('retirar').value = ''
 
         var mensaje = document.getElementById('mensaje')
-        mensaje.textContent = 'Retiro exitoso.'
+        mensaje.textContent = 'Retiro de ' + retirar + ' exitoso. Cantidad en la cuenta de ' + nuevoSaldo
     }
 }
 
@@ -45,7 +45,7 @@ function validarDineroRetirar(){
         return false
     }
     
-    if (retirar < saldo){
+    if (retirar > saldo){
         msg.textContent = "No puedes retirar más dinero del que tienes en tu saldo."
         return false
     }
@@ -53,19 +53,21 @@ function validarDineroRetirar(){
 }
 
 function ingresarDinero(){
-    var validacionExitosa = validarDineroIngresado()
+    var validacionExitosa = validarIngresoDinero()
 
     if (validacionExitosa){
         var saldo = cuenta.saldo
-        var ingresar = document.getElementById('ingresar').value
+
+        var ingresar = parseFloat(document.getElementById('ingresar').value)
+
 
         var nuevoSaldo = saldo + ingresar
-        nuevoSaldo = document.getElementById('ingresar').value
+        document.getElementById('saldo').value = nuevoSaldo
 
         document.getElementById('ingresar').value = ''
 
         var mensaje = document.getElementById('mensaje')
-        mensaje.textContent = 'Ingreso exitoso.'
+        mensaje.textContent = 'Ingreso de ' + ingresar + ' exitoso. Cantidad en la cuenta de ' + nuevoSaldo
     }
 }
 
