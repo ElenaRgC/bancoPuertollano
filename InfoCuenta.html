@@ -1,16 +1,35 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>BancoPuertollano</title>
+    <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="estilos.css" />
 </head>
-<body>
-    <div id="menu">
-       
-    </div>
-    
 
- </body>
- 
- 
- </html>
+<body>
+    <div id="menu"></div>
+
+    <h2>Información de la Cuenta</h2>
+    <div class="grid">
+        <label for="iban"><b>IBAN:</b></label>
+        <input type="text" name="iban" id="iban" disabled="true">
+        <label for="saldo"><b>Saldo:</b></label>
+        <input type="text" name="saldo" id="saldo" disabled="true">
+    </div>
+    <div class="grid">
+        <input type="text" name="retirar" id="retirar" placeholder="Saldo a Retirar">
+        <button id = "botonRetirar">Retirar</button>
+        <input type="text" name="ingresar" id="ingresar" placeholder="Saldo a Ingresar">
+        <button class="boton" id = "botonIngresar">Ingresar</button>
+    </div>
+    <p id="mensaje-cuenta"></p>
+
+    <script src="app.js"></script>
+    <script>
+        cargarDatos('cuenta');
+        cargarCabecera();
+    </script>
+</body>
+
+</html>
