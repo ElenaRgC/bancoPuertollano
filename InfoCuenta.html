@@ -12,10 +12,12 @@
 
     <h2>Información de la Cuenta</h2>
     <div class="grid">
-        <label for="iban">IBAN:</label>
+        <label for="iban"><b>IBAN:</b></label>
         <input type="text" name="iban" id="iban" placeholder="ES21 1465 0100 72 2030876293" disabled="true">
-        <label for="saldo">Saldo:</label>
+        <label for="saldo"><b>Saldo:</b></label>
         <input type="text" name="saldo" id="saldo" placeholder="500" disabled="true">
+    </div>
+    <div class="grid">
         <input type="text" name="retirar" id="retirar" placeholder="Saldo a Retirar">
         <button onclick="retirarDinero()">Retirar</button>
         <input type="text" name="ingresar" id="ingresar" placeholder="Saldo a Ingresar">
