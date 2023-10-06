@@ -1,22 +1,71 @@
-let botonCliente = document.getElementById("boton-cliente");
-let botonTarjeta = document.getElementById("boton-tarjeta");
-let parrafoCliente = document.getElementById("mensaje-cliente");
-let parrafoTarjeta = document.getElementById("mensaje-tarjeta");
-let parrafoCuenta = document.getElementById("mensaje-cuenta");
-let botonRetirar = document.getElementById("botonRetirar");
-let botonIngresar = document.getElementById("botonIngresar");
-let inputRetirar = document.getElementById("retirar");
-let inputIngresar = document.getElementById("ingresar");
-
+let botonCliente;
+let botonTarjeta;
+let parrafoCliente;
+let parrafoTarjeta;
+let parrafoCuenta;
+let botonRetirar;
+let botonIngresar;
+let inputRetirar;
+let inputIngresar;
 let menu;
 
-function cargarDatos() {
-    /*document.getElementById('idPersona').value = persona.id
-    document.getElementById('nombre').value = persona.nombre
-    document.getElementById('apellido1').value = persona.apellido1
-    document.getElementById('apellido2').value = persona.apellido2
-    document.getElementById('nacionalidad').value = persona.nacionalidad*/
+function cargarDatos(origen) {
+
     menu = document.getElementById("menu").innerHTML;
+    
+    switch (origen) {
+        case 'index':
+            document.getElementById('nombre').value = persona.nombre;
+            document.getElementById('apellido1').value = persona.apellido1;
+            document.getElementById('apellido2').value = persona.apellido2;
+            document.getElementById('nacionalidad').value = persona.nacionalidad;
+
+            botonCliente = document.getElementById("boton-cliente");
+            parrafoCliente = document.getElementById("mensaje-cliente");
+
+            botonCliente.addEventListener("click", function () {
+                modificarDatos(validarDatos());
+            });
+
+            break;
+        case 'cuenta':
+            parrafoCuenta = document.getElementById("mensaje-cuenta");
+            botonRetirar = document.getElementById("botonRetirar");
+            botonIngresar = document.getElementById("botonIngresar");
+            inputRetirar = document.getElementById("retirar");
+            inputIngresar = document.getElementById("ingresar");
+
+            botonRetirar.addEventListener("click", function(){
+                retirarDinero();
+            })
+
+            botonIngresar.addEventListener("click", function(){
+                ingresarDinero();
+            })
+
+            inputRetirar.addEventListener("click", function(){
+                campoBlancoIngresar();
+            })
+
+            inputIngresar.addEventListener("click", function(){
+                campoBlancoRetirar();
+            })
+
+            break;
+        case 'tarjetas':
+            botonTarjeta = document.getElementById("boton-tarjeta");
+            parrafoTarjeta = document.getElementById("mensaje-tarjeta");
+
+            crearTabla();
+
+            botonTarjeta.addEventListener("click", function () {
+                guardarTarjeta(validarTarjeta());
+                crearTabla();
+            });
+
+            break;
+    }
+
 }
 
 function cargarCabecera() {
@@ -51,35 +100,6 @@ let cuenta = {
     saldo: 500,
     tarjetas: tarjetas,
 };
-
-crearTabla();
-
-// LISTENERS --------------------------
-
-botonCliente.addEventListener("click", function () {
-    modificarDatos(validarDatos());
-});
-
-botonTarjeta.addEventListener("click", function () {
-    guardarTarjeta(validarTarjeta());
-    crearTabla();
-});
-
-botonRetirar.addEventListener("click", function(){
-    retirarDinero();
-})
-
-botonIngresar.addEventListener("click", function(){
-    ingresarDinero();
-})
-
-inputRetirar.addEventListener("click", function(){
-    campoBlancoIngresar();
-})
-
-inputIngresar.addEventListener("click", function(){
-    campoBlancoRetirar();
-})
 
 // FUNCIONES ----------------------------
 
@@ -252,31 +272,30 @@ function validarDineroRetirar() {
     var patron = /^[0-9]+$/;
 
     if (!patron.test(retirar)) {
-        msg.textContent = "Por favor, ingresa solo números";
-        msg.setAttribute('class','error')
+        parrafoCuenta.textContent = "Por favor, ingresa solo números";
+        parrafoCuenta.setAttribute('class','error')
 
         return false;
     }
 
     if (retirar > saldo) {
-        msg.textContent = "No puedes retirar más dinero del que tienes en tu saldo.";
-        msg.setAttribute('class','error')
+        parrafoCuenta.textContent = "No puedes retirar más dinero del que tienes en tu saldo.";
+        parrafoCuenta.setAttribute('class','error')
         return false;
     }
-    msg.setAttribute('class', 'correcto')
+    parrafoCuenta.setAttribute('class', 'correcto')
     return true;
 }
 
 function validarIngresoDinero() {
     var ingresar = document.getElementById("ingresar").value;
-    var msg = document.getElementById("mensaje");
 
     var patron = /^[0-9]+$/;
     if (!patron.test(ingresar)) {
-        msg.textContent = "Por favor, ingresa solo números";
-        msg.setAttribute('class', 'error')
+        parrafoCuenta.textContent = "Por favor, ingresa solo números";
+        parrafoCuenta.setAttribute('class', 'error')
         return false;
     }
-    msg.setAttribute('class', 'correcto')
+    parrafoCuenta.setAttribute('class', 'correcto')
     return true;
 }
