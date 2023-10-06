@@ -7,14 +7,15 @@ let botonRetirar;
 let botonIngresar;
 let inputRetirar;
 let inputIngresar;
-let menu;
 
 function cargarDatos(origen) {
 
-    menu = document.getElementById("menu").innerHTML;
-    
     switch (origen) {
         case 'index':
+            if (localStorage.getItem('cliente')) {
+                persona = JSON.parse(localStorage.getItem('cliente'))
+            }
+
             document.getElementById('nombre').value = persona.nombre;
             document.getElementById('apellido1').value = persona.apellido1;
             document.getElementById('apellido2').value = persona.apellido2;
@@ -29,30 +30,41 @@ function cargarDatos(origen) {
 
             break;
         case 'cuenta':
+            if (localStorage.getItem('cuenta')) {
+                cuenta = JSON.parse(localStorage.getItem('cuenta'))
+            }
+
+            document.getElementById('iban').value = cuenta.iban;
+            document.getElementById('saldo').value = cuenta.saldo;
+
             parrafoCuenta = document.getElementById("mensaje-cuenta");
             botonRetirar = document.getElementById("botonRetirar");
             botonIngresar = document.getElementById("botonIngresar");
             inputRetirar = document.getElementById("retirar");
             inputIngresar = document.getElementById("ingresar");
 
-            botonRetirar.addEventListener("click", function(){
+            botonRetirar.addEventListener("click", function () {
                 retirarDinero();
             })
 
-            botonIngresar.addEventListener("click", function(){
+            botonIngresar.addEventListener("click", function () {
                 ingresarDinero();
             })
 
-            inputRetirar.addEventListener("click", function(){
+            inputRetirar.addEventListener("click", function () {
                 campoBlancoIngresar();
             })
 
-            inputIngresar.addEventListener("click", function(){
+            inputIngresar.addEventListener("click", function () {
                 campoBlancoRetirar();
             })
 
             break;
         case 'tarjetas':
+            if (localStorage.getItem('tarjetas')) {
+                tarjetas = JSON.parse(localStorage.getItem('tarjetas'))
+            }
+
             botonTarjeta = document.getElementById("boton-tarjeta");
             parrafoTarjeta = document.getElementById("mensaje-tarjeta");
 
@@ -65,7 +77,6 @@ function cargarDatos(origen) {
 
             break;
     }
-
 }
 
 function cargarCabecera() {
@@ -112,6 +123,8 @@ function modificarDatos(datos) {
 
         parrafoCliente.innerText = "Datos guardados correctamente.";
         parrafoCliente.setAttribute("class", "correcto");
+
+        localStorage.setItem('cliente', JSON.stringify(persona));
     }
 }
 
@@ -124,6 +137,8 @@ function guardarTarjeta(tarjeta) {
         document.getElementById("numero").value = "";
         document.getElementById("cvv").value = "";
         document.getElementById("activa").checked = false;
+
+        localStorage.setItem('tarjetas', JSON.stringify(tarjetas));
     }
 }
 
@@ -139,7 +154,7 @@ function crearTabla() {
 
         for (let dato in tarjeta) {
             if (dato != 'cvv') {
-            td = document.createElement("td");
+                td = document.createElement("td");
 
                 if (dato == 'activa') {
                     if (tarjeta[dato]) {
@@ -150,8 +165,8 @@ function crearTabla() {
                 } else {
                     td.textContent = tarjeta[dato];
                 }
-            
-            tr.appendChild(td);
+
+                tr.appendChild(td);
             }
         }
         tabla.appendChild(tr);
@@ -166,12 +181,13 @@ function retirarDinero() {
         var retirar = parseFloat(document.getElementById("retirar").value);
 
         var nuevoSaldo = saldo - retirar;
-        document.getElementById("saldo").value = "" + nuevoSaldo;
-
-        document.getElementById("retirar").value = "";
+        cuenta.saldo = nuevoSaldo;
+        document.getElementById("saldo").value = cuenta.saldo;
 
         parrafoCuenta.innerText = "Retiro de " + retirar + " exitoso. Cantidad en la cuenta de " + nuevoSaldo;
-        parrafoCuenta.setAttribute("class", "correcto")            
+        parrafoCuenta.setAttribute("class", "correcto")
+
+        localStorage.setItem('cuenta', JSON.stringify(cuenta));
     }
 }
 
@@ -184,20 +200,21 @@ function ingresarDinero() {
         var ingresar = parseFloat(document.getElementById("ingresar").value);
 
         var nuevoSaldo = saldo + ingresar;
-        document.getElementById("saldo").value = nuevoSaldo;
-
-        document.getElementById("ingresar").value = "";
+        cuenta.saldo = nuevoSaldo;
+        document.getElementById("saldo").value = cuenta.saldo;
 
         parrafoCuenta.innerText = "Ingreso de " + ingresar + " exitoso. Cantidad en la cuenta de " + nuevoSaldo;
-        parrafoCuenta.setAttribute("class", "correcto")            
+        parrafoCuenta.setAttribute("class", "correcto")
+
+        localStorage.setItem('cuenta', JSON.stringify(cuenta));
     }
 }
 
-function campoBlancoRetirar(){
+function campoBlancoRetirar() {
     document.getElementById("retirar").value = "";
 }
 
-function campoBlancoIngresar(){
+function campoBlancoIngresar() {
     document.getElementById("ingresar").value = "";
 }
 
@@ -273,14 +290,14 @@ function validarDineroRetirar() {
 
     if (!patron.test(retirar)) {
         parrafoCuenta.textContent = "Por favor, ingresa solo números";
-        parrafoCuenta.setAttribute('class','error')
+        parrafoCuenta.setAttribute('class', 'error')
 
         return false;
     }
 
     if (retirar > saldo) {
         parrafoCuenta.textContent = "No puedes retirar más dinero del que tienes en tu saldo.";
-        parrafoCuenta.setAttribute('class','error')
+        parrafoCuenta.setAttribute('class', 'error')
         return false;
     }
     parrafoCuenta.setAttribute('class', 'correcto')
