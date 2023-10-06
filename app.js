@@ -20,11 +20,11 @@ function retirarDinero(){
     var validacionExitosa = validarDineroRetirar()
 
     if (validacionExitosa){
-        var saldo = parseFloat(document.getElementById('saldo').value)
-        var retirar = parseFloat(document.getElementById('retirar').value)
-
+        var saldo = cuenta.saldo
+        var retirar = parseInt(document.getElementById('retirar').value)
+        
         var nuevoSaldo = saldo - retirar
-        document.getElementById('saldo').value = nuevoSaldo
+        document.getElementById('saldo').value = "" + nuevoSaldo
 
         document.getElementById('retirar').value = ''
 
@@ -34,7 +34,7 @@ function retirarDinero(){
 }
 
 function validarDineroRetirar(){
-    var saldo = document.getElementById('saldo').value
+    var saldo = cuenta.saldo
     var retirar = document.getElementById('retirar').value
     var msg = document.getElementById('mensaje')
 
@@ -56,7 +56,7 @@ function ingresarDinero(){
     var validacionExitosa = validarDineroIngresado()
 
     if (validacionExitosa){
-        var saldo = document.getElementById('saldo').value
+        var saldo = cuenta.saldo
         var ingresar = document.getElementById('ingresar').value
 
         var nuevoSaldo = saldo + ingresar
