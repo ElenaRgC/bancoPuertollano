@@ -116,10 +116,9 @@ let cuenta = {
 
 function modificarDatos(datos) {
     if (datos) {
-        persona.nombre = datos["Nombre"];
-        persona.apellido1 = datos["Primer apellido"];
-        persona.apellido2 = datos["Segundo apellido"];
-        persona.nacionalidad = datos["Nacionalidad"];
+        for (let campo in datos) {
+            persona[campo] = datos[campo];
+        }
 
         parrafoCliente.innerText = "Datos guardados correctamente.";
         parrafoCliente.setAttribute("class", "correcto");
@@ -127,6 +126,7 @@ function modificarDatos(datos) {
         localStorage.setItem('cliente', JSON.stringify(persona));
     }
 }
+
 
 function guardarTarjeta(tarjeta) {
     if (tarjeta) {
@@ -149,7 +149,7 @@ function crearTabla() {
     for (let tarjeta of tarjetas) {
         let tr = document.createElement("tr");
         let td = document.createElement("td");
-        td.textContent = cuenta['iban'];
+        td.textContent = cuenta.iban;
         tr.appendChild(td);
 
         for (let dato in tarjeta) {
@@ -180,7 +180,7 @@ function retirarDinero() {
         var saldo = cuenta.saldo;
         var retirar = parseFloat(document.getElementById("retirar").value);
 
-        cuenta.saldo= saldo - retirar;
+        cuenta.saldo = saldo - retirar;
         document.getElementById("saldo").value = cuenta.saldo;
 
         parrafoCuenta.innerText = "Retiro de " + retirar + " exitoso. Cantidad en la cuenta de " + cuenta.saldo;
@@ -262,12 +262,12 @@ function validarTarjeta() {
         activa: document.getElementById("activa").checked,
     };
 
-    if (!patronTarjeta.test(tarjetaNueva["numero"])) {
+    if (!patronTarjeta.test(tarjetaNueva.numero)) {
         mensaje += "El número de la tarjeta no sigue el siguiente formato: \n";
         mensaje += "XXXX XXXXX XXXXXX \n";
     }
 
-    if (!patronCvv.test(tarjetaNueva["cvv"])) {
+    if (!patronCvv.test(tarjetaNueva.cvv)) {
         mensaje += "El CVV sólo puede estar compuesto de 3 números.";
     }
 
