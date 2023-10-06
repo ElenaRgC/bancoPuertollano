@@ -22,9 +22,9 @@ function retirarDinero(){
     if (validacionExitosa){
         var saldo = cuenta.saldo
         var retirar = parseFloat(document.getElementById('retirar').value)
-
+        
         var nuevoSaldo = saldo - retirar
-        document.getElementById('saldo').value = nuevoSaldo
+        document.getElementById('saldo').value = "" + nuevoSaldo
 
         document.getElementById('retirar').value = ''
 
@@ -57,7 +57,9 @@ function ingresarDinero(){
 
     if (validacionExitosa){
         var saldo = cuenta.saldo
+
         var ingresar = parseFloat(document.getElementById('ingresar').value)
+
 
         var nuevoSaldo = saldo + ingresar
         document.getElementById('saldo').value = nuevoSaldo
