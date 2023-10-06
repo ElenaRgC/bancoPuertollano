@@ -45,6 +45,7 @@ let tarjetas = [
 let cuenta = {
     iban: "ES21 1465 0100 72 2030876293",
     saldo: 500,
+    tarjetas: tarjetas,
 };
 
 crearTabla();
@@ -92,10 +93,26 @@ function crearTabla() {
 
     for (let tarjeta of tarjetas) {
         let tr = document.createElement("tr");
+        let td = document.createElement("td");
+        td.textContent = cuenta['iban'];
+        tr.appendChild(td);
+
         for (let dato in tarjeta) {
-            let td = document.createElement("td");
-            td.textContent = tarjeta[dato];
+            if (dato != 'cvv') {
+            td = document.createElement("td");
+
+                if (dato == 'activa') {
+                    if (tarjeta[dato]) {
+                        td.textContent = 'Sí';
+                    } else {
+                        td.textContent = 'No';
+                    }
+                } else {
+                    td.textContent = tarjeta[dato];
+                }
+            
             tr.appendChild(td);
+            }
         }
         tabla.appendChild(tr);
     }
