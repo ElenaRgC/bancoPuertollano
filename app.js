@@ -2,7 +2,11 @@ let botonCliente = document.getElementById("boton-cliente");
 let botonTarjeta = document.getElementById("boton-tarjeta");
 let parrafoCliente = document.getElementById("mensaje-cliente");
 let parrafoTarjeta = document.getElementById("mensaje-tarjeta");
-let parrafoCuenta = document.getElementById("mensaje-cuenta")
+let parrafoCuenta = document.getElementById("mensaje-cuenta");
+let botonRetirar = document.getElementById("botonRetirar");
+let botonIngresar = document.getElementById("botonIngresar");
+let inputRetirar = document.getElementById("retirar");
+let inputIngresar = document.getElementById("ingresar");
 
 let menu;
 
@@ -60,6 +64,22 @@ botonTarjeta.addEventListener("click", function () {
     guardarTarjeta(validarTarjeta());
     crearTabla();
 });
+
+botonRetirar.addEventListener("click", function(){
+    retirarDinero();
+})
+
+botonIngresar.addEventListener("click", function(){
+    ingresarDinero();
+})
+
+inputRetirar.addEventListener("click", function(){
+    campoBlancoIngresar();
+})
+
+inputIngresar.addEventListener("click", function(){
+    campoBlancoRetirar();
+})
 
 // FUNCIONES ----------------------------
 
@@ -151,6 +171,14 @@ function ingresarDinero() {
         parrafoCuenta.innerText = "Ingreso de " + ingresar + " exitoso. Cantidad en la cuenta de " + nuevoSaldo;
         parrafoCuenta.setAttribute("class", "correcto")            
     }
+}
+
+function campoBlancoRetirar(){
+    document.getElementById("retirar").value = "";
+}
+
+function campoBlancoIngresar(){
+    document.getElementById("ingresar").value = "";
 }
 
 // VALIDACIONES -----------------------------
