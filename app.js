@@ -180,11 +180,10 @@ function retirarDinero() {
         var saldo = cuenta.saldo;
         var retirar = parseFloat(document.getElementById("retirar").value);
 
-        var nuevoSaldo = saldo - retirar;
-        cuenta.saldo = nuevoSaldo;
+        cuenta.saldo= saldo - retirar;
         document.getElementById("saldo").value = cuenta.saldo;
 
-        parrafoCuenta.innerText = "Retiro de " + retirar + " exitoso. Cantidad en la cuenta de " + nuevoSaldo;
+        parrafoCuenta.innerText = "Retiro de " + retirar + " exitoso. Cantidad en la cuenta de " + cuenta.saldo;
         parrafoCuenta.setAttribute("class", "correcto")
 
         localStorage.setItem('cuenta', JSON.stringify(cuenta));
@@ -199,11 +198,10 @@ function ingresarDinero() {
 
         var ingresar = parseFloat(document.getElementById("ingresar").value);
 
-        var nuevoSaldo = saldo + ingresar;
-        cuenta.saldo = nuevoSaldo;
+        cuenta.saldo = saldo + ingresar;
         document.getElementById("saldo").value = cuenta.saldo;
 
-        parrafoCuenta.innerText = "Ingreso de " + ingresar + " exitoso. Cantidad en la cuenta de " + nuevoSaldo;
+        parrafoCuenta.innerText = "Ingreso de " + ingresar + " exitoso. Cantidad en la cuenta de " + cuenta.saldo;
         parrafoCuenta.setAttribute("class", "correcto")
 
         localStorage.setItem('cuenta', JSON.stringify(cuenta));
