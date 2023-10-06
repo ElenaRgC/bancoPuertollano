@@ -17,9 +17,17 @@
 }
 .grid > * {
   margin-bottom: 0.3rem;
+  width: fit-content;
+}
+.grid [disabled] {
+  width: 200px;
 }
 .grid label {
   padding-right: 0.5rem;
+}
+.grid button {
+  width: fit-content;
+  margin-left: 0.5rem;
 }
 .error {
   color: red;
