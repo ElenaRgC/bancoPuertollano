@@ -45,7 +45,7 @@ function validarDineroRetirar(){
         return false
     }
     
-    if (retirar < saldo){
+    if (retirar > saldo){
         msg.textContent = "No puedes retirar más dinero del que tienes en tu saldo."
         return false
     }
