@@ -3,12 +3,14 @@ let botonTarjeta = document.getElementById("boton-tarjeta");
 let parrafoCliente = document.getElementById("mensaje-cliente");
 let parrafoTarjeta = document.getElementById("mensaje-tarjeta");
 
+let menu;
+
 function cargarDatos() {
     /* Carga los datos de index.html */
-    document.getElementById("nombre").value = persona.nombre;
+    /* document.getElementById("nombre").value = persona.nombre;
     document.getElementById("apellido1").value = persona.apellido1;
     document.getElementById("apellido2").value = persona.apellido2;
-    document.getElementById("nacionalidad").value = persona.nacionalidad;
+    document.getElementById("nacionalidad").value = persona.nacionalidad; */
 }
 
 function cargarCabecera() {
