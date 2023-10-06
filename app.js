@@ -2,6 +2,7 @@ let botonCliente = document.getElementById("boton-cliente");
 let botonTarjeta = document.getElementById("boton-tarjeta");
 let parrafoCliente = document.getElementById("mensaje-cliente");
 let parrafoTarjeta = document.getElementById("mensaje-tarjeta");
+let parrafoCuenta = document.getElementById("mensaje-cuenta")
 
 let menu;
 
@@ -112,12 +113,8 @@ function retirarDinero() {
 
         document.getElementById("retirar").value = "";
 
-        var mensaje = document.getElementById("mensaje");
-        mensaje.textContent =
-            "Retiro de " +
-            retirar +
-            " exitoso. Cantidad en la cuenta de " +
-            nuevoSaldo;
+        parrafoCuenta.innerText = "Retiro de " + retirar + " exitoso. Cantidad en la cuenta de " + nuevoSaldo;
+        parrafoCuenta.setAttribute("class", "correcto")            
     }
 }
 
@@ -134,12 +131,8 @@ function ingresarDinero() {
 
         document.getElementById("ingresar").value = "";
 
-        var mensaje = document.getElementById("mensaje");
-        mensaje.textContent =
-            "Ingreso de " +
-            ingresar +
-            " exitoso. Cantidad en la cuenta de " +
-            nuevoSaldo;
+        parrafoCuenta.innerText = "Ingreso de " + ingresar + " exitoso. Cantidad en la cuenta de " + nuevoSaldo;
+        parrafoCuenta.setAttribute("class", "correcto")            
     }
 }
 
@@ -210,20 +203,22 @@ function validarTarjeta() {
 function validarDineroRetirar() {
     var saldo = cuenta.saldo;
     var retirar = document.getElementById("retirar").value;
-    var msg = document.getElementById("mensaje");
 
     var patron = /^[0-9]+$/;
 
     if (!patron.test(retirar)) {
         msg.textContent = "Por favor, ingresa solo números";
+        msg.setAttribute('class','error')
+
         return false;
     }
 
     if (retirar > saldo) {
-        msg.textContent =
-            "No puedes retirar más dinero del que tienes en tu saldo.";
+        msg.textContent = "No puedes retirar más dinero del que tienes en tu saldo.";
+        msg.setAttribute('class','error')
         return false;
     }
+    msg.setAttribute('class', 'correcto')
     return true;
 }
 
@@ -234,7 +229,9 @@ function validarIngresoDinero() {
     var patron = /^[0-9]+$/;
     if (!patron.test(ingresar)) {
         msg.textContent = "Por favor, ingresa solo números";
+        msg.setAttribute('class', 'error')
         return false;
     }
+    msg.setAttribute('class', 'correcto')
     return true;
 }
