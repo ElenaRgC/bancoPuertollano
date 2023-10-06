@@ -17,21 +17,23 @@
     </div>
 
     <h2>Datos Cliente</h2>
-    <label for="nombre">Nombre:</label>
-    <input type="text" name="nombre" id="nombre">
-    <label for="apellido1">Primer Apellido:</label>
-    <input type="text" name="apellido1" id="apellido1">
-    <label for="apellido2">Segundo Apellido:</label>
-    <input type="text" name="apellido2" id="apellido2">
-    <label for="nacionalidad">Nacionalidad:</label>
-    <input type="text" name="nacionalidad" id="nacionalidad">
+    <div class="grid">
+        <label for="nombre"><b>Nombre:</b></label>
+        <input type="text" name="nombre" id="nombre">
+        <label for="apellido1"><b>Primer Apellido:</b></label>
+        <input type="text" name="apellido1" id="apellido1">
+        <label for="apellido2"><b>Segundo Apellido:</b></label>
+        <input type="text" name="apellido2" id="apellido2">
+        <label for="nacionalidad"><b>Nacionalidad:</b></label>
+        <input type="text" name="nacionalidad" id="nacionalidad">
+    </div>
+    <button id="boton-cliente">Modificar Datos</button>
+    <p id="mensaje-cliente"></p>
 
     <script src="app.js">
-
-
     </script>
     <script>
-        cargarDatos()
+        cargarDatos();
     </script>
 
 </body>
