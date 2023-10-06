@@ -1,29 +1,33 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>BancoPuertollano</title>
-        <meta charset="UTF-8">
-        <link rel="stylesheet" type="text/css" href="estilos.css" />
-    </head>
-    <body>
-        <div id="menu"></div>
 
-        <h2>Información de la Cuenta</h2>
-        <div>
-            <label for="iban">IBAN:</label>
-            <input type="text" name="iban" id="iban" />
-            <label for="saldo">Saldo:</label>
-            <input type="text" name="saldo" id="saldo" />
-            <input type="text" name="retirar" id="retirar" />
-            <button>Retirar</button>
-            <input type="text" name="ingresar" id="ingresar" />
-            <button>Ingresar</button>
-        </div>
+<head>
+    <title>BancoPuertollano</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="estilos.css" />
+</head>
 
-        <script src="app.js"></script>
-        <script>
-            cargarDatos();
-            cargarCabecera();
-        </script>
-    </body>
+<body>
+    <div id="menu"></div>
+
+    <h2>Información de la Cuenta</h2>
+    <div class="grid">
+        <label for="iban">IBAN:</label>
+        <input type="text" name="iban" id="iban" placeholder="ES21 1465 0100 72 2030876293" disabled="true">
+        <label for="saldo">Saldo:</label>
+        <input type="text" name="saldo" id="saldo" placeholder="500" disabled="true">
+        <input type="text" name="retirar" id="retirar" placeholder="Saldo a Retirar">
+        <button onclick="retirarDinero()">Retirar</button>
+        <input type="text" name="ingresar" id="ingresar" placeholder="Saldo a Ingresar">
+        <button class="boton" onclick="ingresarDinero()">Ingresar</button>
+    </div>
+    <p id="mensaje"></p>
+
+    <script src="app.js"></script>
+    <script>
+        cargarDatos();
+        cargarCabecera();
+    </script>
+</body>
+
 </html>
