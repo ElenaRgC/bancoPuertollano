@@ -9,17 +9,17 @@ let inputRetirar;
 let inputIngresar;
 
 function cargarDatos(origen) {
-
     switch (origen) {
-        case 'index':
-            if (localStorage.getItem('cliente')) {
-                persona = JSON.parse(localStorage.getItem('cliente'))
+        case "index":
+            if (localStorage.getItem("cliente")) {
+                persona = JSON.parse(localStorage.getItem("cliente"));
             }
 
-            document.getElementById('nombre').value = persona.nombre;
-            document.getElementById('apellido1').value = persona.apellido1;
-            document.getElementById('apellido2').value = persona.apellido2;
-            document.getElementById('nacionalidad').value = persona.nacionalidad;
+            document.getElementById("nombre").value = persona.nombre;
+            document.getElementById("apellido1").value = persona.apellido1;
+            document.getElementById("apellido2").value = persona.apellido2;
+            document.getElementById("nacionalidad").value =
+                persona.nacionalidad;
 
             botonCliente = document.getElementById("boton-cliente");
             parrafoCliente = document.getElementById("mensaje-cliente");
@@ -29,13 +29,13 @@ function cargarDatos(origen) {
             });
 
             break;
-        case 'cuenta':
-            if (localStorage.getItem('cuenta')) {
-                cuenta = JSON.parse(localStorage.getItem('cuenta'))
+        case "cuenta":
+            if (localStorage.getItem("cuenta")) {
+                cuenta = JSON.parse(localStorage.getItem("cuenta"));
             }
 
-            document.getElementById('iban').value = cuenta.iban;
-            document.getElementById('saldo').value = cuenta.saldo;
+            document.getElementById("iban").value = cuenta.iban;
+            document.getElementById("saldo").value = cuenta.saldo;
 
             parrafoCuenta = document.getElementById("mensaje-cuenta");
             botonRetirar = document.getElementById("botonRetirar");
@@ -45,24 +45,24 @@ function cargarDatos(origen) {
 
             botonRetirar.addEventListener("click", function () {
                 retirarDinero();
-            })
+            });
 
             botonIngresar.addEventListener("click", function () {
                 ingresarDinero();
-            })
+            });
 
             inputRetirar.addEventListener("click", function () {
                 campoBlancoIngresar();
-            })
+            });
 
             inputIngresar.addEventListener("click", function () {
                 campoBlancoRetirar();
-            })
+            });
 
             break;
-        case 'tarjetas':
-            if (localStorage.getItem('tarjetas')) {
-                tarjetas = JSON.parse(localStorage.getItem('tarjetas'))
+        case "tarjetas":
+            if (localStorage.getItem("tarjetas")) {
+                tarjetas = JSON.parse(localStorage.getItem("tarjetas"));
             }
 
             botonTarjeta = document.getElementById("boton-tarjeta");
@@ -116,17 +116,17 @@ let cuenta = {
 
 function modificarDatos(datos) {
     if (datos) {
-        for (let campo in datos) {
-            persona[campo] = datos[campo];
-        }
+        persona.nombre = datos.Nombre;
+        persona.apellido1 = datos["Primer apellido"];
+        persona.apellido2 = datos["Segundo apellido"];
+        persona.nacionalidad = datos["Nacionalidad"];
 
         parrafoCliente.innerText = "Datos guardados correctamente.";
         parrafoCliente.setAttribute("class", "correcto");
 
-        localStorage.setItem('cliente', JSON.stringify(persona));
+        localStorage.setItem("cliente", JSON.stringify(persona));
     }
 }
-
 
 function guardarTarjeta(tarjeta) {
     if (tarjeta) {
@@ -138,7 +138,7 @@ function guardarTarjeta(tarjeta) {
         document.getElementById("cvv").value = "";
         document.getElementById("activa").checked = false;
 
-        localStorage.setItem('tarjetas', JSON.stringify(tarjetas));
+        localStorage.setItem("tarjetas", JSON.stringify(tarjetas));
     }
 }
 
@@ -153,14 +153,14 @@ function crearTabla() {
         tr.appendChild(td);
 
         for (let dato in tarjeta) {
-            if (dato != 'cvv') {
+            if (dato != "cvv") {
                 td = document.createElement("td");
 
-                if (dato == 'activa') {
+                if (dato == "activa") {
                     if (tarjeta[dato]) {
-                        td.textContent = 'Sí';
+                        td.textContent = "Sí";
                     } else {
-                        td.textContent = 'No';
+                        td.textContent = "No";
                     }
                 } else {
                     td.textContent = tarjeta[dato];
@@ -183,10 +183,14 @@ function retirarDinero() {
         cuenta.saldo = saldo - retirar;
         document.getElementById("saldo").value = cuenta.saldo;
 
-        parrafoCuenta.innerText = "Retiro de " + retirar + " exitoso. Cantidad en la cuenta de " + cuenta.saldo;
-        parrafoCuenta.setAttribute("class", "correcto")
+        parrafoCuenta.innerText =
+            "Retiro de " +
+            retirar +
+            " exitoso. Cantidad en la cuenta de " +
+            cuenta.saldo;
+        parrafoCuenta.setAttribute("class", "correcto");
 
-        localStorage.setItem('cuenta', JSON.stringify(cuenta));
+        localStorage.setItem("cuenta", JSON.stringify(cuenta));
     }
 }
 
@@ -201,10 +205,14 @@ function ingresarDinero() {
         cuenta.saldo = saldo + ingresar;
         document.getElementById("saldo").value = cuenta.saldo;
 
-        parrafoCuenta.innerText = "Ingreso de " + ingresar + " exitoso. Cantidad en la cuenta de " + cuenta.saldo;
-        parrafoCuenta.setAttribute("class", "correcto")
+        parrafoCuenta.innerText =
+            "Ingreso de " +
+            ingresar +
+            " exitoso. Cantidad en la cuenta de " +
+            cuenta.saldo;
+        parrafoCuenta.setAttribute("class", "correcto");
 
-        localStorage.setItem('cuenta', JSON.stringify(cuenta));
+        localStorage.setItem("cuenta", JSON.stringify(cuenta));
     }
 }
 
@@ -288,17 +296,18 @@ function validarDineroRetirar() {
 
     if (!patron.test(retirar)) {
         parrafoCuenta.textContent = "Por favor, ingresa solo números";
-        parrafoCuenta.setAttribute('class', 'error')
+        parrafoCuenta.setAttribute("class", "error");
 
         return false;
     }
 
     if (retirar > saldo) {
-        parrafoCuenta.textContent = "No puedes retirar más dinero del que tienes en tu saldo.";
-        parrafoCuenta.setAttribute('class', 'error')
+        parrafoCuenta.textContent =
+            "No puedes retirar más dinero del que tienes en tu saldo.";
+        parrafoCuenta.setAttribute("class", "error");
         return false;
     }
-    parrafoCuenta.setAttribute('class', 'correcto')
+    parrafoCuenta.setAttribute("class", "correcto");
     return true;
 }
 
@@ -308,9 +317,9 @@ function validarIngresoDinero() {
     var patron = /^[0-9]+$/;
     if (!patron.test(ingresar)) {
         parrafoCuenta.textContent = "Por favor, ingresa solo números";
-        parrafoCuenta.setAttribute('class', 'error')
+        parrafoCuenta.setAttribute("class", "error");
         return false;
     }
-    parrafoCuenta.setAttribute('class', 'correcto')
+    parrafoCuenta.setAttribute("class", "correcto");
     return true;
 }
